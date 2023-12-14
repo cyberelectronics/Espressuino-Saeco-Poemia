@@ -13,6 +13,7 @@ The thermistor was calibrated using a multimeter with thermocouple and Capgo the
 It is possible to use a high precision thermistor (1% or 0.1%) without calibration, just using the table with resistance values from the datasheet and Capgo software. You can use the  published source code without any modifications, using this thermistor (for v1.4 or higher; better resolution): EPCOS – B57560G104F – THERMISTOR 100K 1%  ( and EPCOS – B57551G1103F005 – 10K 1% for v1.3 or lower).
 For PID tuning the controller must be connected to a PC (USB), using BBCC Plotter for [Processing](http://processing.org/).
 
+**Videos**
 - Finished mini Espressuino board (with miniUSB and bootloader for Arduino): https://youtu.be/72RFxjzXu7s
 - Automatic Software Pressure Control (v1.5): https://youtu.be/ySqIIzoYjFY
 - Grinder Timer Function  (v1.6): https://youtu.be/_HfGKKBOd9I
