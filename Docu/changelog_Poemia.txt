@@ -1,0 +1,168 @@
+
+This version was modified for Poemia (only PID and Steam Temperature INIT value modifications in espressuino.pde file). 
+
+Note: 
+Will work with Poemia or any other espresso machine, just change the P-I-D values and steam temperature.
+"Electrovalve output" can be left unconnected if your espresso machine doesn't have such component (the software will work anyway).
+
+
+Espressuino v3.0 --- 08.10.13
+
+Compatible Hardware version 1.2
+Not compatible with Hardware version 1.1
+
+Added: - Volumetric measurement on 2 different (shared) buttons (AV1(S2) and AV2(S1), in Auto Mode).
+       - 2 different (shared buttons) Shot duration Timers for Auto Time Mode (AT1(S2) and AT2(S1))
+       - Volumetric Learn Mode for 2 (shared) different buttons (pressing S1 and S2 buttons while turning ON the espresso machine).
+       - AutoBackflush Mode - for GroupHead and 3 way valve cleaning (longpress on S1 button while turning ON the espresso machine)
+       - Display Espresso Counter at the Startup (reset to 0 by pressing S3 and S4 buttons while turning ON the espresso machine)
+       - Display Shot Duration (seconds) in Volumetric Mode.
+       - Volumetric units can be changed from ml to number of pulses from volumetric sensor. 
+
+Modified: - AUT/MAN (S3) button functions changed to TIM/VOL (Change between Time and Volume Modes)
+          - Auto Modes (2xTime and 2xVolume) can be activated by longpress (2 seconds) on S1 or S2 buttons. 
+          - AutoFlush function removed from S2 button and now attached to S3 button.
+            In the firmware, when AutoFlush function is activated, Grinder 2 Timer can not be used on this button.   
+          - Backlight Control possibility removed (due to hardware changes).
+
+
+----------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------- 
+
+Works only with Hardware version 1.1
+
+Espressuino v2.0 --- 16.09.13
+
+Added: - Two different User/Grinder settings. Just keep pressed the buttons to select which User/Grinder Timer do you want to Start
+         The last User selected, will be loaded everytime.
+         Select User 1 - Keep pressed the Espresso/Steam button, then turn ON the Espresso machine
+         Select User 2 - Keep pressed the Auto/Manual button, then turn ON the Espresso machine
+         QuickStart Grinder Timer 1 - Keep pressed the Espresso/Steam button
+         QuickStart Grinder Timer 2 - Keep pressed the Auto/Manual button
+       - Grinder Timers can be set from Settings Mode (in 0.1 sec interval)
+
+Modified: - Descale Mode now can be started by pressing the Start/Stop button. 
+          - Changed back to 2 Main Modes: Espresso and Steam (Grinder Mode removed)
+            For Grinders the QuickStart Mode is enough.
+
+----------------------------------------------------------------------------------------------------------------
+
+Espressuino v1.9 --- 10.09.13
+
+Added: - Automatic Descale Function
+         Can be turned ON by pressing the Espresso/Steam button, then turn ON the machine, until the Descale Mode message will appear on the LCD
+         "Dscl" on the LCD shows the boiler temperature while descaling, and "Drem" shows how many descale cycles remains.
+         In the software we can set: - temperature LOW/HIGH (default 40C/90C)
+                                     - delay after the first boiler preheat (default 0 minutes)
+                                     - Pump Turn ON time, to obtain 180-200ml water (default 21 seconds)
+                                     - delay between cycles (default 15 minutes)
+                                     - number of cycles (default 1, the first decalcifier load cycle always already included)
+         You can stop and start the Automatic process anytime (only in Descale Mode), by pressing the Auto/Manual button.
+         You can stop and start Manually the pump anytime, by pressing the Start/Stop button (this also will Stop the Automatic process)
+         Just turn OFF the machine to exit from Descale Mode. 
+
+----------------------------------------------------------------------------------------------------------------
+
+Espressuino v1.8 --- 05.09.13
+
+Added: - Flush - Keep pressed the Start/Stop button. The pump will turn On for 1 second, then will turn Off automatically.
+       - Improved Preinfusion - Now it is possible to set the Pump ON time (pulse)
+                              - One cycle duration (period, ON+OFF time)
+                              - Number of cycles do you want to skip after preinfusion pulses
+                              - Keep the 3way valve Activated or Deactivated (to release the pressure from portafilter, after preinfusion pulses)
+       - Power Save Mode - The heater will be turned OFF automatically, after a preset period, if no button pressed.
+       - Improved pressure measurement stability, using average datas.
+
+All important values can be set in the software from the main page.          
+
+---------------------------------------------------------------------------------------------------------------
+
+Espressuino v1.7 --- 02.09.13
+
+- Added: 
+        - 3 way ElectroValve control
+        Now it is possible to use all the previously implemented functions (Preinfusion and AutoFill-up) on Gaggia Classic.    
+- Modified: 
+          There was a problem with using PB5 for electrovalve. This pin is always activated at startup by the bootloader, for a fraction of a second. 
+          So I connected the Electrovalve control to PB1 and the Buzzer to PB5. 
+
+
+
+
+
+===============================================================================================================
+===============================================================================================================
+
+Special For Poemia
+
+
+Espressuino v1.6 --- 23.08.13
+
+Added: Grinder Timer Mode for controlling your Grinder Power ON time 
+       (using a Fotek SSR-40-DA controlled from P2 connector pin 1-GND and pin 5-PB2 output, from AUX connector)
+       
+       Now there is 3 main modes (using Espresso/Steam/Grinder button):
+       1) Espresso Mode
+       2) Steam Mode
+       3) Grinder Mode
+    
+    a) Select Grinder Mode and push the Start/Stop button on Espressuino board, to start the timer and your grinder.
+       You can stop and start again the grinder, anytime, pushing the Start/Stop button again.
+
+    b) You can start the Grinder instantly by pressing the Esp/Stm/Grd button for 2 seconds.
+       The grinder will be started only once (for the preset time), then the Espresso Mode will be selected automatically.
+
+       The grinder can be stopped anytime ( a),b) ), using the Start/Stop button. 
+  
+       The timer value can be set in Settings Mode.  
+
+------------------------------------------------------------------------------------------------------------
+
+Espressuino v1.5 --- 07.08.13
+
+- Removed: Sound ON/OFF option from settings and main (now can be turned ON/OFF only from the sketch)
+- Added: Software Pressure Control function, for setting the desired pressure value in the software, 
+         controlling the Ulka Vibration Pump. For this we need a pressure transducer (0.5V to 4.5V - 15bar and R5 must Not Connected),
+         without it the pressure detector pin (P4 pin 10) must be tied to GND and then the pump will work at full power
+         all the time)
+- Added: AutoFill function for the boiler while steaming (useful only when longer steam possibility needed). 
+         Default: Deactivated. Can be activated with "steampump_activate=1".   
+- Bug fix: When Preheat Delay activated, this doesn't stop while we are in Settings mode
+
+------------------------------------------------------------------------------------------------------------
+
+Espressuino v1.4 --- 25.07.13
+
+- Changed: Thermistor value from 10K to 100K for better resolution at higher temperatures (0.1C at 95C), 
+           using EPCOS - B57560G104F - THERMISTOR 100K 1%  
+
+------------------------------------------------------------------------------------------------------------
+
+Espressuino v1.3 --- 05.06.13
+
+- added: changing the P value (PID) while the Pump is ON. This will keep the heater almost at Full Power until 
+the Pump is ON and the boiler temp. is under the Set Temp Value. Useful for espresso machines with small boiler. 
+Drawback: There will be an overshoot, after turning the Pump Off.
+This function can be turned Off by changing the "PUMP_PID" value from 1 to 0, in the source code.
+
+------------------------------------------------------------------------------------------------------------
+
+Espressuino v1.2 --- 29.05.13
+
+- added: Delay function (Dxx on LCD) for Group preheat (from 0 to 99 minutes) 
+
+-----------------------------------------------------------------------------------------------------------
+
+Espressuino v1.1 --- 28.05.13
+
+- small bug fix for Sound when steaming  
+- added: Sound ON (SON) and Sound OFF (SOF) function in menu for buzzer 
+- added: changing P value (PID) while steaming, for reaching steam temperature quickly (thermostat mode) 
+- added: temperature and PID initialization in EEPROM for the first run (after programming the bootloader).
+
+------------------------------------------------------------------------------------------------------------
+
+Espressuino v1.0 
+
+- after first run, the circuit must be connected to the PC for temperature and PID init in EEPROM, 
+using BBCC Plotter (press "R" for init, case sensitive)
