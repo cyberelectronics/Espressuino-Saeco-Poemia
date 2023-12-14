@@ -62,14 +62,79 @@ For PID tuning the controller must be connected to a PC (USB), using BBCC Plotte
 
 **Documentation for connecting to Gaggia Classic :**
 For SW v3.0 and HW v1.2 (or above):
-- [Controller PID Espressuino Doc_v1.6 ( Romanian )]()
-- [Controller PID Espressuino Doc_v1.6 ( Hungarian )]()
+- [Controller PID Espressuino Doc_v1.6 ( Romanian )](https://github.com/cyberelectronics/Espressuino-Saeco-Poemia/blob/main/Docu/Controller_PID_Espressuino_ROM_1.6.pdf)
+- [Controller PID Espressuino Doc_v1.6 ( Hungarian )](https://github.com/cyberelectronics/Espressuino-Saeco-Poemia/blob/main/Docu/Controller_PID_Espressuino_HUN_1.6.pdf)
 
 **For older SW and HW:**
 
-- [Controller PID Espressuino Doc_v1.5 ( Romanian )]()
-- [Controller PID Espressuino Doc_v1.5 ( Hungarian )]() 
+- [Controller PID Espressuino Doc_v1.5 ( Romanian )](https://github.com/cyberelectronics/Espressuino-Saeco-Poemia/blob/main/Docu/Controller_PID_Espressuino.pdf)
+- [Controller PID Espressuino Doc_v1.5 ( Hungarian )](https://github.com/cyberelectronics/Espressuino-Saeco-Poemia/blob/main/Docu/Controller_PID_Espressuino_HUN.pdf) 
 
 **Circuit Diagram :**
-- [Espressuino v1.2]()
-- [Espressuino v1.0]()
+- [Espressuino v1.2](https://github.com/cyberelectronics/Espressuino-Saeco-Poemia/blob/main/Docu/Espressuino_v1.2_SCH.pdf)
+- [Espressuino v1.0](https://github.com/cyberelectronics/Espressuino-Saeco-Poemia/blob/main/Docu/Espressuino_v1.0_SCH.pdf)
+
+**Arduino Source Code :**
+   - [Espressuino v3.0](https://github.com/cyberelectronics/Espressuino-Saeco-Poemia/blob/main/Docu/Espressuino_v3.0_Poemia.zip)  — [Changelog](https://github.com/cyberelectronics/Espressuino-Saeco-Poemia/blob/main/Docu/changelog_Poemia.txt)
+   - [Espressuino v1.6](https://github.com/cyberelectronics/Espressuino-Saeco-Poemia/blob/main/Docu/Espressuino_v1.6.zip)   
+   - [Espressuino v1.5](https://github.com/cyberelectronics/Espressuino-Saeco-Poemia/blob/main/Docu/Espressuino_v1.5.zip)
+   - [Espressuino v1.4](https://github.com/cyberelectronics/Espressuino-Saeco-Poemia/blob/main/Docu/Espressuino_v1.4.zip)
+   - [Espressuino v1.3](https://github.com/cyberelectronics/Espressuino-Saeco-Poemia/blob/main/Docu/Espressuino_v1.3.zip)
+   - [Espressuino v1.2](https://github.com/cyberelectronics/Espressuino-Saeco-Poemia/blob/main/Docu/Espressuino_v1.2.zip)
+   - [Espressuino v1.1](https://github.com/cyberelectronics/Espressuino-Saeco-Poemia/blob/main/Docu/Espressuino_v1.1.zip)
+   - [Espressuino v1.0](https://github.com/cyberelectronics/Espressuino-Saeco-Poemia/blob/main/Docu/Espressuino_v1.0.zip)
+
+**P4 Connector pinout:**
+
+1. Power Supply Input  (+7V to +12V)
+2. GND ( – Common Ground, connected to DB9 Shield)
+3. Vcc OUT (+5V Common)
+4. SSR Heater (to SSR LED – input)
+5. Vcc OUT (+5V NC for DB9 connector)
+6. SSR Pump (to SSR LED – input)
+7. Vcc OUT (+5V NC for DB9)
+8. Temp. sensor input (to thermistor)
+9. Vcc OUT (+5V NC for DB9)
+10. Pressure transducer input (to pressure transducer output (0.5V to 4.5V))
+
+**P2 Connector pinout:**
+
+1. GND (NC for DB9)
+2. AREF (NC for DB9)
+3. ADC6 (NC for DB9)
+4. Volumetric Sensor (to pulse output)
+5. SSR Grinder (to SSR LED + input)
+6. SSR EValve (to SSR LED + input)
+7. RX (NC for DB9 – TTL)
+8. TX (NC for DB9 – TTL)
+
+**Push Button functions in firmware v3.0 or higher :**
+
+- S1 – ” SET // AV2/AT2 ” – enter Settings Mode and Set Value // AutoVolume2/Time2 Mode
+- S2 – ” ST / SP / – // AV1/AT1″ – Start / Stop / Decrement // AutoVolume1/Time1 Mode
+- S3 – ” TIM / VOL / + // GRD2\AFL” – Time/Volume/Incr. // Grinder2 or AutoFlush Mode
+- S4 – ” STM / ESP // GRD1″ – Steam / Espresso // Grinder1 Mode
+// – available when longpress
+
+**Other functions available at startup (keep pressed then turn ON the espresso machine):**
+
+- S1 – “Bckf” – Start AutoBackflush Mode
+- S2 – “Dscl” – Start Automatic Descale Mode
+- S3 – “User2” – Load User 2 preferences
+- S4 – “User1” – Load User 1 preferences
+- S1 AND S2 – “Learn” – Start Volume Learn Mode
+- S3 AND S4 – “Reset” – Reset Espresso Counter to 0
+
+**Push Buttons functions in firmware below < v3.0 :**
+
+- S1 – ” SET ” – enter Settings Mode and Set Value
+- S2 – ” ST / SP / – ” – Start (Pump) / Stop (Pump) / Decrement
+- S3 – ” A / M / + ” – Auto (Mode) / Manual (Mode) / Increment
+- S4 – ” STM / ESP ” – Steam (Mode) / Espresso (Mode)
+
+**Other Softwares and drivers needed for this project:**
+
+   - [Arduino](http://arduino.cc/en/Main/Software) (tested with 0022)
+   - [Processing](http://www.processing.org/download/) (for BBCC Plotter)
+   - BBCC Plotter (for PID tuning)
+   - CP2102 USB driver   
